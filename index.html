@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zumba Class Signup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent-1: #ff4081;
+            --accent-2: #64ffda;
+            --accent-3: #448aff;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 {
+            font-size: 3.5rem;
+            color: var(--accent-1);
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        .class-list {
+            display: grid;
+            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        .class-item {
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .class-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .class-item h2 {
+            margin-top: 0;
+            color: var(--accent-2);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .class-item p {
+            margin: 10px 0;
+            color: var(--text-secondary);
+        }
+        .signup-form {
+            margin-top: 50px;
+            background-color: var(--bg-secondary);
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .signup-form h2 {
+            color: var(--accent-3);
+            font-size: 2.2rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        .signup-form input,
+        .signup-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        .signup-form button {
+            background-color: var(--accent-1);
+            color: var(--text-primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .signup-form button:hover {
+            background-color: #ff679a;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .signup-form {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ZUMBA CLASS SIGNUP</h1>
+        <div class="class-list">
+            <div class="class-item">
+                <h2>Monday</h2>
+                <p>Time: 6:00 PM - 7:00 PM</p>
+                <p>Instructor: Michelle</p>
+                <p>Maximum Class Size: 20</p>
+            </div>
+            <div class="class-item">
+                <h2>Wednesday</h2>
+                <p>Time: 7:00 PM - 8:00 PM</p>
+                <p>Instructor: Michelle</p>
+                <p>Maximum Class Size: 20</p>
+            </div>
+            <div class="class-item">
+                <h2>Friday</h2>
+                <p>Time: 5:30 PM - 6:30 PM</p>
+                <p>Instructor: Michelle</p>
+                <p>Maximum Class Size: 20</p>
+            </div>
+        </div>
+        <div class="signup-form">
+            <h2>Join the Party!</h2>
+            <form id="classSignupForm">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                <input type="email" id="email" name="email" placeholder="Email Address" required>
+                <select id="classSelect" name="class" required>
+                    <option value="">Select a Class</option>
+                    <option value="Monday 6:00 PM">Monday 6:00 PM</option>
+                    <option value="Wednesday 7:00 PM">Wednesday 7:00 PM</option>
+                    <option value="Friday 5:30 PM">Friday 5:30 PM</option>
+                </select>
+                <button type="submit">Let's Dance!</button>
+            </form>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('classSignupForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var name = document.getElementById('name').value;
+                var phone = document.getElementById('phone').value;
+                var email = document.getElementById('email').value;
+                var classSelected = document.getElementById('classSelect').value;
+                
+                var subject = 'Zumba Class Signup';
+                var body = 'Name: ' + name + '\nPhone: ' + phone + '\nEmail: ' + email + '\nClass: ' + classSelected;
+                
+                var mailtoLink = 'mailto:mguthrie2005@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+                
+                window.location.href = mailtoLink;
+            });
+        } else {
+            console.error('Form with id "classSignupForm" not found');
+        }
+    });
+    </script>
+</body>
+</html>
